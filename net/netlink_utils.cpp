@@ -370,8 +370,12 @@ bool NetlinkUtils::GetStationInfo(uint32_t interface_index,
     return false;
   }
   if (!sta_info.GetAttributeValue(NL80211_STA_INFO_TX_FAILED, &tx_bad)) {
-    LOG(ERROR) << "Failed to get NL80211_STA_INFO_TX_FAILED";
-    return false;
+    static bool logged = false;
+    if (!logged) {
+      PLOG(ERROR) << "Failed to get NL80211_STA_INFO_TX_FAILED";
+      logged = true;
+    }
+    tx_bad = 0;
   }
   int8_t current_rssi;
   if (!sta_info.GetAttributeValue(NL80211_STA_INFO_SIGNAL, &current_rssi)) {
