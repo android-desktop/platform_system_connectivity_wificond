@@ -101,8 +101,28 @@ $(call inherit-product-if-exists,hardware/libaudio/alsa.mk)
 # Get GPS configuration
 $(call inherit-product-if-exists,device/common/gps/gps_as.mk)
 
-# Get the hardware acceleration libraries
-$(call inherit-product-if-exists,$(LOCAL_PATH)/gpu/gpu_mesa.mk)
+PRODUCT_PACKAGES += \
+    hwcomposer.drm  \
+    gralloc.drm     \
+    gralloc.gbm     \
+    libGLES_mesa    \
+    libtxc_dxtn
+
+PRODUCT_PACKAGES += \
+    libEGL_swiftshader \
+    libGLESv1_CM_swiftshader \
+    libGLESv2_swiftshader \
+    vulkan.android-x86 \
+    vulkan.radv
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version = 196608 \
+    ro.hardware.vulkan.level = 1 \
+    ro.hardware.vulkan.version = 4194307
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.vulkan.level-1.xml:system/etc/permissions/android.hardware.vulkan.level.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/etc/permissions/android.hardware.vulkan.version.xml
 
 # Get the sensors hals
 $(call inherit-product-if-exists,hardware/libsensors/sensors.mk)
