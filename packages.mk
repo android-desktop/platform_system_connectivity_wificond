@@ -53,9 +53,7 @@ PRODUCT_PACKAGES := \
     ssh \
     sshd \
     su \
-    tablet-mode \
-    v86d \
-    wacom-input \
+    v86d
 
 PRODUCT_PACKAGES += \
     libwpa_client \
