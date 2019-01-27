@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+PRODUCT_PROPERTY_OVERRIDES := \
+    ro.dalvik.vm.isa.arm=x86 \
+    ro.enable.native.bridge.exec=1
+    
 $(call inherit-product,$(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
 # This is a generic product that isn't specialized for a specific device.
@@ -37,6 +41,6 @@ $(call inherit-product-if-exists,frameworks/base/data/sounds/AudioPackage6.mk)
 
 # Overrides
 PRODUCT_NAME := generic_pc
-PRODUCT_BRAND := Android-x86
+PRODUCT_BRAND := OPENTHOS
 PRODUCT_DEVICE := generic_pc
 PRODUCT_MODEL := Generic PC

@@ -59,11 +59,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant -dd \
     disabled
     oneshot
 
-service nativebridge /system/bin/enable_nativebridge
-    class main
-    disabled
-    oneshot
-    seclabel u:r:zygote:s0
 
 service logcat /system/bin/logcat -b all -v threadtime -f /data/log.txt
     class debug
@@ -112,8 +107,11 @@ on property:net.dns1=*
 on property:debug.logcat=1
     class_start debug
 
-on property:persist.sys.nativebridge=1
-    start nativebridge
+# Enable native bridge for target executables
+on early-init
+    mount binfmt_misc binfmt_misc /proc/sys/fs/binfmt_misc
 
-on property:persist.sys.nativebridge=0
-    stop nativebridge
+on property:ro.enable.native.bridge.exec=1
+    copy /system/etc/binfmt_misc/arm_exe /proc/sys/fs/binfmt_misc/register
+    copy /system/etc/binfmt_misc/arm_dyn /proc/sys/fs/binfmt_misc/register
+
