@@ -36,7 +36,7 @@ $(call inherit-product,$(SRC_TARGET_DIR)/product/generic.mk)
 $(call inherit-product-if-exists,frameworks/base/data/sounds/AudioPackage6.mk)
 
 # Overrides
-PRODUCT_NAME := android_x86_64
+PRODUCT_NAME := generic_pc
 PRODUCT_BRAND := Android-x86
-PRODUCT_DEVICE := x86_64
-PRODUCT_MODEL := Generic Android-x86_64
+PRODUCT_DEVICE := generic_pc
+PRODUCT_MODEL := Generic PC

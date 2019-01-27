@@ -32,7 +32,7 @@ TARGET_BOARD_PLATFORM := android-x86
 # Some framework code requires this to enable BT
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_LINUX := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/generic/x86_64/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/openthos/generic_pc/bluetooth
 
 BOARD_USE_LEGACY_UI := true
 
@@ -104,13 +104,13 @@ TARGET_HARDWARE_3D := true
 endif
 
 BOARD_KERNEL_CMDLINE := root=/dev/ram0 androidboot.selinux=permissive$(if $(filter x86_64,$(TARGET_ARCH) $(TARGET_KERNEL_ARCH)),, vmalloc=192M)
-TARGET_KERNEL_DIFFCONFIG := device/generic/x86_64/selinux_diffconfig
+TARGET_KERNEL_DIFFCONFIG := device/openthos/generic_pc/selinux_diffconfig
 
 COMPATIBILITY_ENHANCEMENT_PACKAGE := true
 PRC_COMPATIBILITY_PACKAGE := true
 ZIP_OPTIMIZATION_NO_INTEGRITY := true
 
-DEVICE_MANIFEST_FILE := device/generic/x86_64/manifest.xml
+DEVICE_MANIFEST_FILE := device/openthos/generic_pc/manifest.xml
 
-BOARD_SEPOLICY_DIRS += device/generic/x86_64/sepolicy \
+BOARD_SEPOLICY_DIRS += device/openthos/generic_pc/sepolicy \
                        system/bt/vendor_libs/linux/sepolicy \
